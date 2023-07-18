@@ -1,14 +1,14 @@
 # BIBLIOTECA 
 from sqlalchemy import Column, String, Numeric, Boolean, Integer, Float, Date 
-from from config.sqlalchemy.database import Base
+from config.sqlalchemy.database import Base
 
 
 # BASE PRINCIPAL DE CADASTRO DE PESSOA FISICA
 
-class CPF(Base):
+class CPFmodel(Base):
     __tablename__ = 'CPF'
 
-    id = Column(Integer, primary_key = True, index = True)
+    id = Column(Integer, autoincrement = True, primary_key = True, index = True)
     nome = Column(String)
     cpf = Column(String(14),unique = True)
     identidade = Column(String(9), uniwue = True)
