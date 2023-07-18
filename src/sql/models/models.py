@@ -5,6 +5,7 @@ from config.sqlalchemy.database import Base
 
 # BASE PRINCIPAL DE CADASTRO DE PESSOA FISICA
 
+#modulo CPF
 class CPFmodel(Base):
     __tablename__ = 'CPF'
 
