@@ -1,7 +1,7 @@
 # REPOSITORIO DA PESSOA FISICA
 # BIBLIOTECA
 from sqlalchemy.orm import Session
-from sql.schemas.cpfschema import CPFschema
+from src.sql.schemas.cpfschema import CPFschema
 from  src.sql.models.models import CPFmodel
 
 
@@ -38,3 +38,4 @@ class RepositorioCPF():
         self.session.commit()
         self.session.refresh(db_cpf)
         return db_cpf
+    

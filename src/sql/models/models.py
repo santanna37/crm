@@ -7,12 +7,12 @@ from config.sqlalchemy.database import Base
 
 #modulo CPF
 class CPFmodel(Base):
-    __tablename__ = 'CPF'
+    __tablename__ = 'cpf'
 
     id = Column(Integer, autoincrement = True, primary_key = True, index = True)
     nome = Column(String)
     cpf = Column(String(14),unique = True)
-    identidade = Column(String(9), uniwue = True)
+    identidade = Column(String(9), unique = True)
     dataAniversario = Column(Date)
     formacao = Column(String)
     profissao = Column(String)

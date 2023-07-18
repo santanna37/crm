@@ -11,20 +11,20 @@ class CPFschema(BaseModel):
     cpf: str = Field(...,max_length = 14 )
     identidade: str = Field(max_length = 9)
     dataAniversario: str
-    formacao = str
-    profissao = str
-    endereco = str 
-    rua = str
-    numero = str
-    bairo = str
-    cidade = str 
-    cep = str 
-    estado = str 
-    telefone1 = str
-    telefone2 = str
-    email = str
-    dataCriacao = str
-    dataAlteracao = str 
+    formacao : str
+    profissao: str
+    endereco: str 
+    rua: str
+    numero: str
+    bairo: str
+    cidade: str 
+    cep: str 
+    estado: str 
+    telefone1: str
+    telefone2: str
+    email: str
+    dataCriacao: str
+    dataAlteracao: str 
         
     class config:
         orm_mode = True
