@@ -11,4 +11,4 @@ app = FastAPI()
 
 
 #rotas 
-app.include_router(rotascpf.criar_cadastro)
+app.include_router(rotascpf.criar_cadastro())

@@ -8,10 +8,10 @@ from config.sqlalchemy.database import get_db
 
 
 #ROTAS
-router = APIRouter
+router = APIRouter()
 
 #criar usuario
-@router.post(self:path='/cadastro')
+@router.post('/cadastro')
 def criar_cadastro(cpfschema: CPFschema, session: Session = Depends(get_db)):
     cpf_cadastro = RepositorioCPF(session).cadastro(cpfschema)
     return cpf_cadastro
