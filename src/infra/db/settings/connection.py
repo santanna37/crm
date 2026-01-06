@@ -4,13 +4,25 @@ from sqlalchemy.orm import sessionmaker
 class DBConnectionHandler:
 
     def __init__(self) -> None:
-        self.__conection_string = "mysql+pymysql://root:senha@localhost:3306/public"
+        self.__conection_string =("mysql+pymysql://root:senha@127.0.0.1:3301/public"
+    "?charset=utf8mb4"
+        )
 
         self.__engine = self.__create_database_engine()
         self.session = None
 
     def __create_database_engine(self):
-        engine = create_engine(self.__conection_string)
+        engine = create_engine(
+            self.__conection_string,
+            pool_pre_ping=True,
+            pool_recycle=3000,
+            pool_size=5,
+            max_overflow=10,
+            connect_args={
+                "connect_timeout":10
+            },
+            echo=False
+            )
         return engine
 
     def get_engine(self):
