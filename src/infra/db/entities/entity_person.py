@@ -31,7 +31,7 @@ class AddressEntity(Base):
     __tablename__ = "address"
 
     id = Column(Integer, primary_key= True, autoincrement= True)
-    cep = Column(String(10)) 
+    cep = Column(String(10))
     street = Column(String(100)) # rua 
     number = Column(String(10)) # numero
     complement = Column(String(10)) # complemento
