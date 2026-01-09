@@ -1,8 +1,8 @@
 """ criacao  de tabelas
 
-Revision ID: 543aec7cdf95
+Revision ID: 598a964a82dd
 Revises: 
-Create Date: 2026-01-06 14:55:33.496395
+Create Date: 2026-01-08 16:54:32.182799
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '543aec7cdf95'
+revision: str = '598a964a82dd'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None

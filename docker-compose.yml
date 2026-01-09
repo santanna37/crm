@@ -1,6 +1,7 @@
 services:
-  mysqldb_send:
-    image: mysql:8.0
+  mysqldb_crm:
+    image: mysql:8.4
+    container_name: mysql_crm
     environment:
       MYSQL_ROOT_PASSWORD: senha
       MYSQL_DATABASE: public
@@ -12,3 +13,4 @@ services:
 
 volumes:
   mysql_data:
+    name: crm_data_mysql
