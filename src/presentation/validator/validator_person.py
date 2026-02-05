@@ -1,8 +1,24 @@
+from datetime import date, datetime
 from typing import Dict
 import unicodedata
+from src.domain.constants.constant_person_themes import ThemesCode
 
 
 class PersonValidator:
+
+    def themes_validator(self, themes_names: list) -> list:
+        list_themes = themes_names
+
+        if not themes_names:
+            return []
+        
+        validated_codes = []
+
+        for name in themes_names:
+            code = ThemesCode.get_theme(name)
+           # code = 
+            validated_codes.append(code)
+        return validated_codes
 
     def name_validator(self, name: str) -> str:
         """Validação de nome """
@@ -118,3 +134,25 @@ class PersonValidator:
         email_person = email.lower()
 
         return email_person
+
+    
+    def birth_date_validator(self, birth_date_person: str) -> date:
+        
+        birth_date = birth_date_person
+
+        if not birth_date:
+            raise ValueError('Campo obrigatório')
+
+        try:
+            date_person = datetime.strptime(birth_date,"%Y-%m-%d").date() 
+            return date_person
+        
+        except ValueError:
+            raise ValueError("formato invalido")
+
+    
+    def phone_validator(self, phone_person: str) -> str:
+        phone = phone_person
+        return phone 
+
+    

@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional, List
 from datetime import date, datetime
 
@@ -19,19 +19,18 @@ class AddressModel:
 
 @dataclass
 class ThemesModel:
-    code: str = 'outros'
-    description: str = 'Outros'
-    id: int = 15
+    code: int 
+    id: int | None = None
 
 @dataclass
 class PersonModel:
     full_name: str
     email: str
     birth_date: date
-    created_at: datetime
     phone: str
     address: AddressModel
-    themes: List[ThemesModel]
+    themes: List[ThemesModel] = field(default_factory=list)
+    created_at:Optional[datetime] = None
     consent: bool = False
     activate: bool = True
     id: int |None = None

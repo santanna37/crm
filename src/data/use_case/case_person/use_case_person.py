@@ -15,7 +15,7 @@ class UseCasePerson(UseCasePersonInterface):
     def create(self, person: PersonModel) -> Dict:
         new_person = self.__repository.create_person(person= person)
 
-        return PersonMapper.domain_to_dict(new_person)
+        return new_person
 
     def read(self, name:str) -> List:
         list_person = self.__repository.read_person(name= name)

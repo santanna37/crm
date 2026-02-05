@@ -19,7 +19,7 @@ class PersonEntity(Base):
 
     address = relationship("AddressEntity", back_populates = 'person', uselist= False)
 
-    themes = relationship('Themes', secondary = "themes_person", back_populates = "person")
+    themes = relationship('Themes', back_populates = "person")
 
 
     def __repr__(self):
@@ -47,21 +47,13 @@ class AddressEntity(Base):
         return f"Address: {self.street} , {self.number}"
 
 
-themes_person = Table(
-    'themes_person',
-    Base.metadata,
-    Column('id', Integer, primary_key = True, autoincrement = True),
-    Column('id_person', Integer, ForeignKey('person.id')),
-    Column('id_themes', Integer, ForeignKey('themes.id'))
-)
-
 
 class Themes(Base):
     __tablename__ = "themes"
 
     id = Column(Integer, primary_key = True, autoincrement = True)
-    code = Column(String(50), unique= True, nullable = False)
-    description = Column(String(50))
+    code = Column(Integer, nullable = False)
+    id_person = Column(Integer, ForeignKey('person.id'))
 
-    person = relationship("PersonEntity", secondary = "themes_person", back_populates = 'themes')
+    person = relationship("PersonEntity", back_populates = 'themes')
 

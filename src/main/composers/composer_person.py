@@ -16,4 +16,4 @@ class PersonCompose:
         use_case = UseCasePerson(repository= repository)
         controller = PersonController(use_case= use_case,dto= dto)
 
-        return controller.handler
+        return controller

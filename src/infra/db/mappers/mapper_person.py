@@ -8,6 +8,14 @@ class PersonMapper:
     @staticmethod
     def domain_to_entity(model: PersonModel) -> PersonEntity:
         
+        themes_list = []
+
+        if not model.themes == []:
+            for theme in model.themes:
+                new_theme = Themes(code = theme.code)
+                themes_list.append(new_theme)
+        
+        
         address_person = AddressEntity(
             cep = model.address.cep,
             street = model.address.street,
@@ -28,12 +36,30 @@ class PersonMapper:
             created_at = model.created_at,
             activate = model.activate,
             address = address_person,
-            themes = model.themes
+            themes = themes_list
         )
 
     @staticmethod
     def entity_to_domain(entity: PersonEntity) -> PersonModel:
+        
+        themes_list = []
 
+        if not entity.themes == []:
+            for theme in entity.themes:
+                new_theme = ThemesModel(code = theme.code)
+                themes_list.append(new_theme)
+
+
+        address_person = AddressModel(
+            cep = entity.address.cep,
+            street = entity.address.street,
+            number = entity.address.number,
+            complement = entity.address.complement,
+            burgh = entity.address.burgh,
+            city = entity.address.city,
+            state_uf = entity.address.state_uf,
+            state_name = entity.address.state_name
+        )
 
 
         return PersonModel(
@@ -45,8 +71,8 @@ class PersonMapper:
             consent = entity.consent,
             created_at = entity.created_at,
             activate = entity.activate,
-            address = entity.address,
-            themes = entity.themes
+            address = address_person,
+            themes = themes_list
         )
 
     # @staticmethod

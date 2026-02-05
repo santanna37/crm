@@ -12,12 +12,12 @@ class PersonRepositoryInterface(ABC):
     def create_person(self, person: PersonModel) -> str: pass  
 
 
-    @abstractmethod
-    def read_person(self, name: str) ->List: pass
+    # @abstractmethod
+    # def read_person(self, name: str) ->List: pass
 
 
-    @abstractmethod
-    def update_person(self, name: str, new_data: PersonModel) -> PersonModel: pass
+    # @abstractmethod
+    # def update_person(self, name: str, new_data: PersonModel) -> PersonModel: pass
 
 
     # @abstractmethod
