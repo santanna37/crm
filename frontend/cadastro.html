@@ -1,377 +1,300 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cadastro</title>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Formulário de Cadastro</title>
+</head>
+<body>
+    <div class="container-forms">
+        <h1>Formulário de Apoiadores</h1>
 
-    <!-- Bootstrap 5.3 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+        <form action="#" method="post" class="forms-card">
+            <h2>Dados Pessoais</h2>
 
-    <style>
-      body {
-        background: #f5f7fb;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-      }
-      .card {
-        max-width: 920px;
-        width: 100%;
-      }
-      .form-section {
-        max-height: 56vh;
-        overflow: auto;
-        padding-right: 0.5rem;
-      }
-      /* suaviza barra de rolagem em navegadores que suportam */
-      .form-section::-webkit-scrollbar {
-        width: 8px;
-      }
-      .form-section::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.12);
-        border-radius: 4px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h3 class="card-title mb-3">Formulário de Cadastro</h3>
-        <form id="cadastroForm" novalidate>
-          <div class="row g-3">
-            <!-- Dados pessoais básicos -->
-            <div class="col-12 col-md-6">
-              <label for="nome" class="form-label">Nome completo</label>
-              <input
-                type="text"
-                class="form-control"
-                id="nome"
-                name="nome"
-                required
-              />
-              <div class="invalid-feedback">Informe seu nome.</div>
+            <div class="form-group">
+                <label for="person_full_name">Nome Completo</label>
+                <input  type="text"
+                        id="person_full_name"
+                        name="full_name"
+                        placeholder="Digite seu nome completo"
+                        required
+                        >
             </div>
 
-            <div class="col-12 col-md-6">
-              <label for="email" class="form-label">E-mail</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                required
-              />
-              <div class="invalid-feedback">Informe um e-mail válido.</div>
+            <div class="form-group">
+                <label for="person-cpf">CPF</label>
+                <input  type="text"
+                        id="person-cpf"
+                        name="cpf"
+                        placeholder="Apenas números"
+                        pattern="[0-9]{11}"
+                        maxlength="11"
+                        required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="person_date"> Data de Nascimento</label>
+                <input  type="date"
+                        id="person_date"
+                        name="birth_date"
+                        required
+                >
             </div>
 
-            <div class="col-12 col-md-6">
-              <label for="telefone" class="form-label">Telefone</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="telefone"
-                name="telefone"
-              />
+            <h2>Dados de Contato</h2>
+
+            <div class="form-group">
+                <label for="person-phone">Telefone</label>
+                <input  type="text"
+                        id="person-phone"
+                        name="phone"
+                        placeholder="Whatssapp mais usado"
+                        required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="person_email"> Email </label>
+                <input  type="email"
+                        id="person_email"
+                        name="email"
+                        placeholder="Digite o email mais usado"
+                        required
+                >
             </div>
 
-            <div class="col-12 col-md-6">
-              <label for="cidade" class="form-label">Cidade</label>
-              <input
-                type="text"
-                class="form-control"
-                id="cidade"
-                name="cidade"
-              />
+            <h2>Dados de Endereço</h2>
+
+            <div class="form-group">
+                <label for="person-cep">CEP</label>
+                <input  type="text"
+                        id="person-cep"
+                        name="cep"
+                        placeholder="apenas os numeros"
+                        required
+                >
             </div>
 
-            <!-- Título da seção de interesses - ocupa toda a largura -->
-            <div class="col-12">
-              <h5 class="mt-2">Áreas de Interesse</h5>
-              <p class="text-muted small">Selecione uma ou mais opções</p>
+            <div class="form-group">
+                <label for="person-street">Endereço</label>
+                <input  type="text"
+                        id="person-street"
+                        name="street"
+                        required
+                > 
             </div>
 
-            <!-- Checkboxes agrupados -->
-            <div class="col-12">
-              <div class="row g-2 form-section">
-                <!-- Usamos col-12 col-sm-6 col-lg-4 para responsividade -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="Educacao"
-                      id="educacao"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="educacao"
-                      >Educação</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="Saude"
-                      id="saude"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="saude">Saúde</label>
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="TrabalhoRenda"
-                      id="trabalho"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="trabalho"
-                      >Trabalho e Renda</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="Moradia"
-                      id="moradia"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="moradia"
-                      >Moradia</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="SegurancaPublica"
-                      id="seguranca"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="seguranca"
-                      >Segurança Pública</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="ReformaAgraria"
-                      id="reforma"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="reforma"
-                      >Reforma Agrária</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="IgualdadeGenero"
-                      id="genero"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="genero"
-                      >Igualdade de Gênero</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="JusticaSocial"
-                      id="justica"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="justica"
-                      >Justiça Social</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="DireitosLGBT"
-                      id="lgbt"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="lgbt"
-                      >Direitos LGBT</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="IgualdadeRacial"
-                      id="racial"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="racial"
-                      >Igualdade Racial</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="MilitanciaDigital"
-                      id="militancia"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="militancia"
-                      >Militância Digital</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="Cultura"
-                      id="cultura"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="cultura"
-                      >Cultura</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="MeioAmbiente"
-                      id="meioambiente"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="meioambiente"
-                      >Meio Ambiente</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-12 col-sm-6 col-lg-4">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value="Outros"
-                      id="outros"
-                      name="interesses[]"
-                    />
-                    <label class="form-check-label" for="outros">Outros</label>
-                  </div>
-                </div>
-              </div>
+            <div class="form-group">
+                <label for="street-number">Número</label>
+                <input  type="text"
+                        id="street-number"
+                        name="number"
+                        
+                >
             </div>
 
-            <!-- Observações -->
-            <div class="col-12">
-              <label for="observacoes" class="form-label"
-                >Observações (opcional)</label
-              >
-              <textarea
-                class="form-control"
-                id="observacoes"
-                name="observacoes"
-                rows="3"
-              ></textarea>
+            <div class="form-group">
+                <label for="street-complement">Complemento</label>
+                <input  type="text"
+                        id="street-complement"
+                        name="complement"
+                >
             </div>
 
-            <!-- Botões -->
-            <div class="col-12 d-flex justify-content-end gap-2">
-              <button type="reset" class="btn btn-outline-secondary">
-                Limpar
-              </button>
-              <button type="submit" class="btn btn-primary">
-                Enviar cadastro
-              </button>
+            <div class="form-group">
+                <label for="street-burgh">Bairro</label>
+                <input  type="text"
+                        id="street-burgh"
+                        name="burgh"
+                >
             </div>
-          </div>
+
+            <div class="form-group">
+                <label for="street-city">Cidade</label>
+                <input  type="text"
+                        id="street-city"
+                        name="city"
+                        required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="person-state">Estado</label>
+                <input  type="text"
+                        id="person-state"
+                        name="state_name"
+                        required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="uf-state">UF</label>
+                <input  type="text"
+                        id="uf-state"
+                        name="state_uf"
+                        required
+                >
+            </div>
+            
+            <h2>Temas de Interesse</h2>
+            <div class="themes-container">
+
+                <div class="form">
+                    <label for="theme-educacao">Educação</label>
+                    <input  type="checkbox"
+                            id="theme-educacao"
+                            name="themes"
+                            value="Educação"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="theme-saude">Saúde</label>
+                    <input  type="checkbox"
+                            id="theme-saude"
+                            name="themes"
+                            value="Saúde"
+                    >
+                </div>
+                
+                <div class="form">
+                    <label for="theme-assis-social">Assistência Social</label>
+                    <input type="checkbox"
+                            id="theme-assis-social"
+                            name="themes" 
+                            value="Assistência Social">
+                </div>
+
+                <div class="form">
+                    <label for="theme-cultura">Cultura</label>
+                    <input type="checkbox" 
+                            id="theme-cultura"
+                            name="themes"
+                            value="Cultura"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="theme-esporte-lazer">Esporte e Lazer</label>
+                    <input type="checkbox"
+                            id="theme-esporte-lazer"
+                            name="themes"
+                            value="Esporte e Lazer"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="theme-dir-humanos">Direitos Humanos</label>
+                    <input type="checkbox"
+                            id="theme-dir-humanos"
+                            name="themes"
+                            value="Direitos Humanos"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-mulheres">Direitos das Mulheres</label>
+                    <input type="checkbox"
+                            id="themes-mulheres"
+                            name="themes"
+                            value="Mulheres"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-racial">Igualdade Racial</label>
+                    <input type="checkbox"
+                            id="themes-racial"
+                            name="themes"
+                            value="Igualdade Racial"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-juventude">Juventude</label>
+                    <input type="checkbox"
+                            id="themes-juventude"
+                            name="themes"
+                            value="Juventude"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-acessibilidade">Acessibilidade</label>
+                    <input type="checkbox"
+                            id="themes-acessibilidade"
+                            name="themes"
+                            value="Pessoa com deficiencia"
+                    >
+                </div>
+                
+                <div class="form">
+                    <label for="themes-idosa">Terceira idade</label>
+                    <input type="checkbox"
+                            id="themes-idosa"
+                            name="themes"
+                            value="Pessoas Idosas"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-meio-ambiente">Meio Ambiente</label>
+                    <input type="checkbox"
+                            id="themes-meio-ambiente"
+                            name="themes"
+                            value="Meio Ambiente"
+                    >
+                </div>
+
+
+                <div class="form">
+                    <label for="themes-economia">Desenvolvimento Economico</label>
+                    <input type="checkbox"
+                            id="themes-economia"
+                            name="themes"
+                            value="Desenvolvimento Económico"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-alimentacao">Segurânça Alimentar</label>
+                    <input type="checkbox"
+                            id="themes-alimentacao"
+                            name="themes"
+                            value="Segurança Alimentar"
+                    >
+                </div>
+
+                <div class="form">
+                    <label for="themes-seguranca">Segurança Publica</label>
+                    <input type="checkbox"
+                            id="themes-seguranca"
+                            name="themes"
+                            value="Segurança Publica"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Aceita os termos de contato ?</p>
+                <label for="themes-consent">Aceito</label>
+                <input type="checkbox"
+                        id="themes-consent"
+                        name="consent"
+                        value="true"
+                >
+            </div>
+
+            <div class="form-group">
+                <button type="submit">
+                    Cadastras e vizitar nosso grupo de zap
+                </button>
+
+            </div>
         </form>
-      </div>
     </div>
-
-    <!-- Bootstrap 5.3 JS (Popper incluído) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-      // Validação de formulário Bootstrap
-      (function () {
-        "use strict";
-        const form = document.getElementById("cadastroForm");
-        form.addEventListener(
-          "submit",
-          function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            } else {
-              event.preventDefault(); // remover se quiser submeter realmente
-              // Exemplo: coletar dados e mostrar no console (substitua por envio via fetch)
-              const data = new FormData(form);
-              const obj = {};
-              for (const [k, v] of data.entries()) {
-                if (k === "interesses[]") {
-                  obj.interesses = obj.interesses || [];
-                  obj.interesses.push(v);
-                } else {
-                  obj[k] = v;
-                }
-              }
-              console.log("Dados do formulário:", obj);
-              // Feedback visual simples
-              alert("Cadastro enviado (ver console).");
-              form.reset();
-            }
-            form.classList.add("was-validated");
-          },
-          false,
-        );
-      })();
-    </script>
-  </body>
+</body>
 </html>
