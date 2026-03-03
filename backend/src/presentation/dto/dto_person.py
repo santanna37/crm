@@ -27,8 +27,6 @@ class DTOPerson:
         for theme in themes:
             themes_list.append(ThemesModel(code= theme))
 
-
-
         # address vem do request -> sem validação 
         address = person_dict.get("address", {})
 
@@ -42,11 +40,6 @@ class DTOPerson:
                                     state_uf = address.get("state_uf"),
                                     complement = address.get("complement")
         )
-
-
-
-
-
 
         body_person = PersonModel(
                                 full_name = full_name,
