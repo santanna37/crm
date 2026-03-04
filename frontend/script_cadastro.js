@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         try {
-            const response = await fetch("http://localhost:8000/person/", {
+            const response = await fetch("https://crm-back-bm9v.onrender.com/person/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

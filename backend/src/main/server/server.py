@@ -3,12 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.main.routers.route_person import  router as person_router
 
 
-
 app = FastAPI()
-
-app.include_router(person_router)
-
-
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,3 +12,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.include_router(person_router)
+
+
+
