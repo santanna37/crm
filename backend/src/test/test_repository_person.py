@@ -1,14 +1,16 @@
 from src.infra.db.repositores.repository_person import PersonRepository
 from src.infra.db.entities.entity_person import PersonEntity
 from src.domain.models.model_person import PersonModel, AddressModel, ThemesModel
-import pytest
+
+
 from datetime import date
+import pytest
 
 
 address = AddressModel(
     cep="20000-000",
     street="Rua Teste",
-    number="123",
+    number="999",
     city="Rio de Janeiro",
     burgh="ribeira",
     state_uf="RJ",
@@ -22,15 +24,38 @@ person_test = PersonModel(
     phone="21999999999",
     consent=True,
     address=address,
-    themes= [ThemesModel(code=1), ThemesModel(code=2)]
+    themes= [ThemesModel(code=0), ThemesModel(code=2)]
 )
 
-@pytest.mark.repo
-def test_repo_create_person():
-    repo = PersonRepository()
-    repo.create_person(person= person_test)
-    print('passou_create_test')
+filtro = PersonModel(
+    full_name=None,
+    email=None,
+    birth_date=None,
+    phone=None,
+    address=AddressModel(
+        cep=None,
+        street=None,
+        number=None,
+        city=None,
+        burgh=None,
+        state_uf=None,
+        state_name=None
+    ),
+    themes=[ThemesModel(code=0), ThemesModel(code=12)]
+)
+# @pytest.mark.repo
+# def test_repo_create_person():
+#     repo = PersonRepository()
+#     repo.create_person(person= person_test)
+#     print('passou_create_test')
 
+def test_repo_read_person():
+    repo = PersonRepository()
+    response = repo.read_person(filters=filtro)
+    
+    print(f"\nTOTAL NO BANCO: {len(response)}")
+    #print(response)
+    
 
 # # def test_repo_list_person():
 # #     repo = PersonRepository()

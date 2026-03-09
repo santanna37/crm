@@ -11,7 +11,7 @@ class UseCasePersonInterface(ABC):
     def create(self, person: PersonModel) -> str: pass
 
     @abstractstaticmethod
-    def read(self, name: str) -> List: pass
+    def read(self, filters: PersonModel) -> List: pass
 
-    @abstractstaticmethod
-    def update(self, name: str, new_data: PersonModel) -> str: pass
+    # @abstractstaticmethod
+    # def update(self, name: str, new_data: PersonModel) -> str: pass

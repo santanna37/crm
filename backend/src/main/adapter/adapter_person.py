@@ -18,3 +18,17 @@ async def person_adapter_create(request: Request):
 
     return JSONResponse(status_code= http_response.status_code,
                         content= http_response.body)
+
+
+async def person_adapter_read(request: Request):
+
+    filters = dict(request.query_params)
+
+    http_request = HttpRequest(query_params= filters)
+
+    handler = PersonCompose.person_read()
+
+    http_response = handler.handler(http_request= http_request)
+
+    return JSONResponse(status_code= http_response.status_code,
+                        content= http_response.body)

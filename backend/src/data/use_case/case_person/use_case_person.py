@@ -17,12 +17,12 @@ class UseCasePerson(UseCasePersonInterface):
 
         return new_person
 
-    def read(self, name:str) -> List:
-        list_person = self.__repository.read_person(name= name)
+    def read(self, filters:PersonModel) -> List:
+        list_person = self.__repository.read_person(filters= filters)
 
         return list_person
 
-    def update(self, name:str, new_data:PersonModel) -> str:
-        up_person = self.__repository.update_person(name= name, new_data= new_data)
+    # def update(self, name:str, new_data:PersonModel) -> str:
+    #     up_person = self.__repository.update_person(name= name, new_data= new_data)
 
-        return up_person
+    #     return up_person

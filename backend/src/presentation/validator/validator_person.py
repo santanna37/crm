@@ -16,7 +16,7 @@ class PersonValidator:
 
         for name in themes_names:
             code = ThemesCode.get_theme(name)
-           # code = 
+            # code = 
             validated_codes.append(code)
         return validated_codes
 

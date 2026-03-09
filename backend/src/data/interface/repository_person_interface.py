@@ -12,8 +12,8 @@ class PersonRepositoryInterface(ABC):
     def create_person(self, person: PersonModel) -> str: pass  
 
 
-    # @abstractmethod
-    # def read_person(self, name: str) ->List: pass
+    @abstractmethod
+    def read_person(self, filters: PersonModel) ->List: pass
 
 
     # @abstractmethod

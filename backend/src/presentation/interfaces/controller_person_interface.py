@@ -6,7 +6,13 @@ from abc import ABC, abstractmethod
 
 
 
-class PersonControllerInterface(ABC):
+class CreatePersonControllerInterface(ABC):
+
+    @abstractmethod
+    def handler(self, http_request: HttpRequest) -> HttpResponse: pass
+
+
+class ReadPersonControllerInterface(ABC):
 
     @abstractmethod
     def handler(self, http_request: HttpRequest) -> HttpResponse: pass

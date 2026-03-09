@@ -1,11 +1,12 @@
 from src.infra.db.settings.connection import DBConnectionHandler
 from src.infra.db.mappers.mapper_person import PersonMapper
-from src.infra.db.entities.entity_person import PersonEntity
-from src.domain.models.model_person import PersonModel
+from src.infra.db.entities.entity_person import PersonEntity, AddressEntity, Themes
+from src.domain.models.model_person import PersonModel, AddressModel, ThemesModel
 from src.data.interface.repository_person_interface import PersonRepositoryInterface
 
+from dataclasses import asdict
 from typing import List
-
+from sqlalchemy import or_
 
 
 class PersonRepository(PersonRepositoryInterface):
@@ -28,32 +29,58 @@ class PersonRepository(PersonRepositoryInterface):
                 raise exception
 
 
-    # def read_person(self, name: str) ->List:
-    #     with DBConnectionHandler() as database:
-    #         try:
-    #             persons =(
-    #                  database
-    #             .query(PersonEntity)
-    #             .filter(PersonEntity.name == name)
-    #             .all()
-    #             )
-    #             lista_person = []
+    def read_person(self, filters:PersonModel)->List:
 
-    #             for person in persons:
-    #                 person = PersonMapper.entity_to_domain(entity= person)
-    #                 lista_person.append(person)
+        filters = asdict(filters)
+        filters_themes = filters["themes"]
+        filters_address = filters["address"]
+        filters.pop("address")
+        filters.pop("themes")
+        
+        list_filter = []
+        theme_conditions = []
+        with DBConnectionHandler() as session:
+            try:
+                query = session.query(PersonEntity).outerjoin(AddressEntity).outerjoin(Themes)
                 
-    #             print(lista_person)
-    #             return lista_person
-            
-    #         except Exception as exception:
-    #             database.rollback()
-    #             print(exception)
-    #             raise exception
+                for key, value in filters.items():
+                    if value:
+                        column = getattr(PersonEntity, key)
+                        if isinstance(value, str):
+                            query = query.filter(column.like(f"%{value}%"))
+                        else:
+                            query = query.filter(column == value)
+                
+                for key, value in filters_address.items():
+                    if value:
+                        column = getattr(AddressEntity, key)
+                        if isinstance(value, str):
+                            query = query.filter(column.like(f"%{value}%"))
+                        else:
+                            query = query.filter(column == value)
+                
+                for theme in filters_themes: 
+                    for key, value in theme.items():
+                        if value is not None:
+                            column = getattr(Themes, key)
+                            theme_conditions.append(column == value)
+                if theme_conditions:
+                    query = query.filter(or_(*theme_conditions))
+                
+                print(str(query.statement))
+                print(query)
+                response = query.distinct().all()
 
-    #         finally:
-    #             print('read_acabou')
-    #             database.close()
+                for item in response:
+                    list_filter.append(PersonMapper.entity_to_domain(item))
+                    print(list_filter)
+                    print(len(list_filter))
+                
+                return list_filter
+
+            except Exception as exception:
+                print(f"Erro na query: {exception}")
+                raise exception
 
 
     # def update_person(self, name: str, new_data:PersonModel) -> PersonModel:
