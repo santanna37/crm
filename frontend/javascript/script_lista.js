@@ -1,5 +1,5 @@
 // 1. CONFIGURAÇÕES: Endereço do seu servidor FastAPI
-const API_BASE_URL = 'http://127.0.0.1:8000';
+const API_BASE_URL = 'https://crm-back-bm9v.onrender.com';
 const ENDPOINT_LIST = '/person/list';
 
 // 2. MAPEAMENTO DO DOM: Conectando o JS aos IDs do seu HTML
