@@ -36,14 +36,14 @@ class AdapterEmail:
         message["To"] = email
         
         try:
-            with smtplib.SMTP(self._server, self._port, timeout=30) as server:
-                server.starttls()
+            with smtplib.SMTP_SSL(self._server, self._port, timeout=30) as server:
+                #server.starttls()
                 server.login(self._host, self._password)
                 server.send_message(message)
+                print("✅ [DEBUG] E-mail enviado com sucesso!")
                 return True
                 # debug
         except Exception as exception:
             print(f"\nERRO REAL NO SMTP: {exception}") # Adicione isso!
             print(f"o erro foi {exception}")
             return False  
-
