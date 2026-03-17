@@ -13,4 +13,4 @@ async def create_person_router(request: Request):
 
 @router.get("/list")
 async def read_person_router(request: Request):
-    return await person_adapter_read(request=request)
+    return await person_adapter_read(request=request)   

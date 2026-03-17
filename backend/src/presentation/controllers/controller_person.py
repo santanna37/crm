@@ -22,6 +22,7 @@ class  CreatePersonController(CreatePersonControllerInterface):
         try:
             person_model = self._dto.dto_person_create(person_dict= http_request.body)
             result = self._use_case.create(person= person_model)
+            # envio do email
             return HttpResponse(status_code = HTTPStatus.CREATED, body = 'created')
 
         except Exception as error:
