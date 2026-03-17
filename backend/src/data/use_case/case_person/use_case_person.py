@@ -3,17 +3,28 @@ from src.domain.models.model_person import PersonModel
 from src.domain.use_case.case_person.use_case_person_interface import UseCasePersonInterface
 from typing import List, Dict
 from src.infra.db.mappers.mapper_person import PersonMapper
-
-
+from src.domain.use_case.case_email.use_case_email_interface import UseCaseEmailInterface
+from src.domain.constants.constant_email_send import TEMPLATE_WELCOME
 
 
 class UseCasePerson(UseCasePersonInterface):
 
-    def __init__(self, repository: PersonRepositoryInterface):
+    def __init__(self, repository: PersonRepositoryInterface,
+                        email_service: UseCaseEmailInterface = None):
+        self.__email_service = email_service
         self.__repository = repository
 
     def create(self, person: PersonModel) -> Dict:
         new_person = self.__repository.create_person(person= person)
+
+        if self.__email_service:
+            try:
+                self.__email_service.welcome_email(
+                            email= person.email,
+                            email_class=TEMPLATE_WELCOME,
+                )
+            except Exception as error:
+                print(f"[DEBUG] Falha no envio do email {error}")
 
         return new_person
 
@@ -25,4 +36,4 @@ class UseCasePerson(UseCasePersonInterface):
     # def update(self, name:str, new_data:PersonModel) -> str:
     #     up_person = self.__repository.update_person(name= name, new_data= new_data)
 
-    #     return up_person
+    #     return up_person  

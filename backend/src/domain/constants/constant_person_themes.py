@@ -7,7 +7,6 @@ from enum import IntEnum
 
 
 class ThemesCode(IntEnum):
-    OUTROS = 0 
     EDUCACAO = 1
     SAUDE = 2
     ASSISTENCIA_SOCIAL = 3
@@ -23,6 +22,7 @@ class ThemesCode(IntEnum):
     DESENVOLVIMENTO_ECONOMICO = 13
     SEGURANCA_ALIMENTAR = 14
     SEGURANCA_PUBLICA = 15  
+    OUTROS = 16 
 
     @classmethod
     def get_theme(cls, theme_name:str) -> int:

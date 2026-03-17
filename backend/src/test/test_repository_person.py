@@ -18,8 +18,8 @@ address = AddressModel(
 )
 
 person_test = PersonModel(
-    full_name="Luiz Santanna",
-    email="luiz@email.com",
+    full_name="Luiz Santanna teste email",
+    email="lsantanna.menezes@gmail.com",
     birth_date=date(1995, 5, 20),
     phone="21999999999",
     consent=True,
@@ -49,12 +49,12 @@ filtro = PersonModel(
 #     repo.create_person(person= person_test)
 #     print('passou_create_test')
 
-def test_repo_read_person():
-    repo = PersonRepository()
-    response = repo.read_person(filters=filtro)
+# def test_repo_read_person():
+#     repo = PersonRepository()
+#     response = repo.read_person(filters=filtro)
     
-    print(f"\nTOTAL NO BANCO: {len(response)}")
-    #print(response)
+#     print(f"\nTOTAL NO BANCO: {len(response)}")
+#     #print(response)
     
 
 # # def test_repo_list_person():

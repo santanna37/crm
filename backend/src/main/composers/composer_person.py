@@ -3,7 +3,7 @@ from src.data.use_case.case_person.use_case_person import UseCasePerson
 from src.presentation.controllers.controller_person import CreatePersonController, ReadPersonController
 from src.presentation.dto.dto_person import DTOPerson
 from src.presentation.validator.validator_person import PersonValidator
-
+from src.data.use_case.case_email.use_case_email import UseCaseEmail
 
 
 class PersonCompose:
@@ -15,7 +15,8 @@ class PersonCompose:
         dto = DTOPerson(validator= validator)
 
         repository = PersonRepository()
-        use_case = UseCasePerson(repository= repository)
+        email_welcome = UseCaseEmail()
+        use_case = UseCasePerson(repository= repository, email_service= email_welcome)
         controller = CreatePersonController(use_case= use_case,dto= dto)
 
         return controller
