@@ -8,6 +8,7 @@ from email import encoders
 from pathlib import Path
 from dotenv import load_dotenv
 import os 
+import socket
 
 
 
@@ -28,6 +29,7 @@ class AdapterEmail:
     
 
     def send_email(self ,email: str, email_class: MIMEMultipart):
+        socket.setdefaulttimeout(30)
 
         message = email_class
         message["From"] = self._host
