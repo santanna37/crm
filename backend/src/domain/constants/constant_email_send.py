@@ -1,37 +1,37 @@
-import os 
 from pathlib import Path
 
-# 1. Pega o caminho absoluto de onde este arquivo (constant_email_send.py) está
-current_dir = Path(__file__).parent.resolve()
+# Pega o diretório onde este arquivo está (constants/)
+CURRENT_DIR = Path(__file__).parent.resolve()
 
-# 2. Navega até a pasta 'media' de forma relativa ao arquivo atual
-# Se o arquivo está em src/domain/constants/, a imagem está em media/
-image_path = str(current_dir / "media" / "estrela_pt.png")
+# A pasta media está no mesmo nível deste arquivo
+MEDIA_DIR = CURRENT_DIR / "media"
+
+# Validação
+if not MEDIA_DIR.exists():
+    raise FileNotFoundError(f"Pasta media não encontrada em: {MEDIA_DIR}")
+
+# Helper para pegar path de imagens
+def get_image_path(filename: str) -> str:
+    path = MEDIA_DIR / filename
+    if not path.exists():
+        raise FileNotFoundError(f"Imagem não encontrada: {path}")
+    return str(path)
 
 TEMPLATE_WELCOME = {
-    'subset': 'email de boas vindas',
+    'subject': 'Bem-vindo ao CRM!',
     'body': """
-            <html>
-                <body>
-                    <h1> passou </h1>
-                    <p> Tem anexo</p>
-                    <p> tem imagem no porpo</p>
-                    <img src="cid:image1">
-                </body>
-            </html>
-    """ ,
-    'image_body':{
-        'id':'image1',
-        'path':image_path,
-        'type':'png',
-        'bytes':None
-    },
-    'image_header':{
-        'id':'image1',
-        'path':image_path,
-        'type':'png',
-        'bytes':None
-    },
-    
-
+        <html>
+            <body style="font-family: Arial, sans-serif;">
+                <img src="cid:header_logo" style="max-width: 600px;">
+                <h1>Olá, seja bem-vindo!</h1>
+                <p>Seu cadastro foi realizado com sucesso.</p>
+                <img src="cid:body_image" style="width: 200px;">
+            </body>
+        </html>
+    """,
+    'images': [
+        {'id': 'header_logo', 'path': get_image_path('estrela_pt.png'), 'type': 'png'},
+        {'id': 'body_image', 'path': get_image_path('estrela_pt.png'), 'type': 'png'}
+    ],
+    'attachments': []  # Para arquivos não-inline
 }
