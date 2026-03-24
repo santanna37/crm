@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 alert("Cadastro realizado com sucesso 🚀");
                 form.reset();
-                window.location.href = "https://chat.whatsapp.com/JtuEts8xfCnFzlq92JuMaH?mode=gi_t";
+                window.location.href = "https://chat.whatsapp.com/HFrd79nQFG7HeQbLchvehW?mode=gi_t";
             } else {
                 alert("Erro: " + (result.detail || "Falha no cadastro"));
             }
