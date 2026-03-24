@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM System - Gestão de Pessoas</title>
+    <title>Gestão de Apoiadores</title>
     <link rel="stylesheet" href="/frontend/css/styles_lista.css">
     <!-- SheetJS Library via CDN -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
@@ -13,8 +13,8 @@
         <!-- Container Superior (Header) -->
         <header class="header">
             <div class="header-left">
-                <div class="logo">CRM Pro</div>
-                <h1>Sistema de Gestão de Pessoas</h1>
+                <div class="logo">Gestão</div>
+                <h1>Apoiadores da campanha</h1>
             </div>
             <div class="header-right">
                 <div class="user-info">
@@ -41,6 +41,19 @@
                     <label for="filter-theme">Código de Tema</label>
                     <input type="text" id="filter-theme" placeholder="Ex: T001, T002...">
                 </div>
+                <div class="filter-group">
+                    <label for="filter-phone">Telefone</label>
+                    <input type="text" id="filter-phone" placeholder="Somente os números">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-cep">CEP</label>
+                    <input type="text" id="filter-cep" placeholder="Somente os números">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-city">Cidade</label>
+                    <input type="text" id="filter-city" placeholder="Digite a cidade">
+                </div>
+
             </div>
         </section>
 

@@ -7,6 +7,9 @@ const elements = {
     filterName: document.getElementById('filter-name'),
     filterEmail: document.getElementById('filter-email'),
     filterTheme: document.getElementById('filter-theme'),
+    filterPhone: document.getElementById('filter-phone'),
+    filterCep: document.getElementById('filter-cep'),
+    filterCity: document.getElementById('filter-city'),
     btnSearch: document.getElementById('btn-search'),
     btnClear: document.getElementById('btn-clear'),
     btnExport: document.getElementById('btn-export'),
@@ -37,6 +40,10 @@ function buildUrlWithParams() {
     if (elements.filterName.value) params.append('full_name', elements.filterName.value.trim());
     if (elements.filterEmail.value) params.append('email', elements.filterEmail.value.trim());
     if (elements.filterTheme.value) params.append('themes', elements.filterTheme.value.trim());
+    if (elements.filterPhone.value) params.append('phone', elements.filterPhone.value.trim());
+    if (elements.filterCep.value) params.append('cep', elements.filterCep.value.trim());
+    if (elements.filterCity.value) params.append('city', elements.filterCity.value.trim());
+
     
     const queryString = params.toString();
     return `${API_BASE_URL}${ENDPOINT_LIST}${queryString ? '?' + queryString : ''}`;
@@ -107,6 +114,9 @@ function handleClear() {
     elements.filterName.value = '';
     elements.filterEmail.value = '';
     elements.filterTheme.value = '';
+    elements.filterPhone.value = '';
+    elements.filterCep.value = '';
+    elements.filterCity.value = '';
     loadData();
 }
 
