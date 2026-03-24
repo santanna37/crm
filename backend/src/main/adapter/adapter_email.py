@@ -7,6 +7,9 @@ class AdapterEmail:
         self.api_key = os.getenv("BREVO_API_KEY")
         self._host = os.getenv("EMAIL_HOST")
         self.url = "https://api.brevo.com/v3/smtp/email"
+        api_key = os.getenv("BREVO_API_KEY")
+        print(f"[DEBUG] API Key carregada: {'SIM' if api_key else 'NÃO'}")
+        print(f"[DEBUG] Primeiros 10 chars: {api_key[:10] if api_key else 'N/A'}...")
 
     def send_email(self, email: str, email_data: dict):
         
