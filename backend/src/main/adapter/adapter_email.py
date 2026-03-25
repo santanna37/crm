@@ -15,7 +15,7 @@ class AdapterEmail:
         
         payload = {
             "sender": {
-                "name": "CRM Sant",
+                "name": "Campanha CLAUDINHO",
                 "email": self._host
             },
             "to": [{"email": email}],
