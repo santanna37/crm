@@ -258,3 +258,24 @@ input:focus {
         grid-column: span 1;
     }
 }
+
+/* ===== ESTILO DO BOTÃO EM LOADING ===== */
+.btn-loading {
+    opacity: 0.8;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+.btn-loading:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Animação do spinner (se não tiver Font Awesome) */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.fa-spin {
+    animation: spin 1s linear infinite;
+}

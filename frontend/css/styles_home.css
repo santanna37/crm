@@ -276,12 +276,15 @@ body {
     color: var(--white);
     border: 3px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
+    padding: 0;
+    overflow: hidden;
 }
 
-.photo-placeholder i {
-    font-size: 4rem;
-    margin-bottom: 15px;
-    opacity: 0.8;
+.photo-placeholder img {
+    width: 100%; /* A foto ocupa toda a largura do contêiner (350px) */
+    height: 100%; /* A foto ocupa toda a altura do contêiner (450px) */
+    object-fit: cover; /* ESSENCIAL: Corta e ajusta a foto para preencher o espaço sem distorcer */
+    object-position: center; /* Centraliza o corte da foto */
 }
 
 .wave-bottom {

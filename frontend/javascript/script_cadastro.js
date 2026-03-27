@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("cadastroForm");
     const btnBuscarCep = document.getElementById("btn-buscar-cep");
+    const submitBtn = form.querySelector('button[type="submit"]');
 
     // --- FUNÇÃO BUSCAR CEP ---
     async function buscarCep() {
@@ -54,6 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
+          // ===== BLOQUEIO PROFISSIONAL =====
+        // 1. Desabilita o botão
+        submitBtn.disabled = true;
+        
+        // 2. Muda o texto e adiciona spinner
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+        
+        // 3. Adiciona classe de loading (opcional, para estilização)
+        submitBtn.classList.add('btn-loading');
+        // ==================================
+
+
         const selectedThemes = [];
         const themeCheckboxes = document.querySelectorAll('input[name="themes"]:checked');
         themeCheckboxes.forEach((cb) => selectedThemes.push(cb.value));
@@ -92,10 +106,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "https://chat.whatsapp.com/HFrd79nQFG7HeQbLchvehW?mode=gi_t";
             } else {
                 alert("Erro: " + (result.detail || "Falha no cadastro"));
+                // ===== REATIVA O BOTÃO EM CASO DE ERRO =====
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                submitBtn.classList.remove('btn-loading');
             }
         } catch (error) {
             console.error("Erro de conexão:", error);
             alert("Erro ao conectar com o servidor.");
+            // ===== REATIVA O BOTÃO EM CASO DE ERRO =====
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            submitBtn.classList.remove('btn-loading');
         }
     });
 });
