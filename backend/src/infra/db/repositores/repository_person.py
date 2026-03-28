@@ -17,13 +17,16 @@ class PersonRepository(PersonRepositoryInterface):
 
         with DBConnectionHandler() as session:
             try:
+                print(f"🔍 [DEBUG] Tentando salvar: {new_user}")
                 session.add(new_user)
                 session.commit()
+                print(f"✅ [DEBUG] Commit realizado com sucesso!")
                 session.refresh(new_user)
                 
                 return PersonMapper.entity_to_domain(new_user)
 
             except Exception as exception:
+                print(f"❌ [DEBUG] Erro ao salvar: {exception}")
                 session.rollback()
 
                 raise exception
@@ -73,8 +76,8 @@ class PersonRepository(PersonRepositoryInterface):
 
                 for item in response:
                     list_filter.append(PersonMapper.entity_to_domain(item))
-                    print(list_filter)
-                    print(len(list_filter))
+                print(f"[DEBUG_QUERY] - {list_filter}")
+                print(len(list_filter))
                 
                 return list_filter
 

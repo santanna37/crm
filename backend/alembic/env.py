@@ -10,23 +10,28 @@ from src.infra.db.settings.base import Base
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-
-# this is the Alembic Config object, which provides
-# access to the values within the .ini file in use.
-config = context.config
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
+load_dotenv()
+
+config = context.config
+
+# Interpret the config file for Python logging.
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-if os.getenv("AMBIENTE") == "LOCAL":
-    database_url= os.getenv("DATABASE_URL_LOCAL")
-elif os.getenv("AMBIENTE") == "ONLINE":
+# LÓGICA DE AMBIENTE
+ambiente = os.getenv("AMBIENTE")
+if ambiente == "LOCAL":
+    database_url = os.getenv("DATABASE_URL_LOCAL")
+else:
     database_url = os.getenv("DATABASE_URL")
 
-config.set_main_option("sqlalchemy.url", database_url)
+# FORÇAR A URL NO CONFIG
+if database_url:
+    config.set_main_option("sqlalchemy.url", database_url)
+    print(f"🚀 [ALEMBIC] Migrando para: {ambiente}")
 
 # add your model's MetaData object here
 # for 'autogenerate' support
