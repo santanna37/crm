@@ -40,8 +40,15 @@ class DBConnectionHandler:
     def __create_database_engine(self):
         engine = create_engine(
             self.__conection_string,
+            pool_pre_ping=True,  # ESSENCIAL: Testa a conexão antes de usar. Se caiu, ele reabre.
+            pool_recycle=3600,   # Recicla a conexão a cada 1 hora para evitar conexões "zumbis"
             connect_args={
-                "connect_timeout": 10
+                "connect_timeout": 30, # Aumentamos para 30s por causa da latência internacional
+                "sslmode": "require",
+                "keepalives": 1,       # Mantém o "fogo amigo" entre seu PC e o Supabase
+                "keepalives_idle": 30,
+                "keepalives_interval": 10,
+                "keepalives_count": 5
             }
         )
         return engine

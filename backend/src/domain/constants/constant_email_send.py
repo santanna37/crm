@@ -1,5 +1,7 @@
 from pathlib import Path
 
+
+
 # Mantemos as definições de diretório caso você use para outros arquivos no futuro
 CURRENT_DIR = Path(__file__).parent.resolve()
 MEDIA_DIR = CURRENT_DIR / "media"
