@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, Table, DateTime
 from src.infra.db.settings.base import Base
 from sqlalchemy.orm import relationship
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 
@@ -14,7 +14,7 @@ class PersonEntity(Base):
     birth_date = Column(Date)
     phone = Column(String(50))
     consent = Column(Boolean, default= False)
-    created_at = Column(DateTime, default= datetime.utcnow, nullable= False)
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     activate = Column(Boolean, default= True)
 
     address = relationship("AddressEntity", back_populates = 'person', uselist= False)

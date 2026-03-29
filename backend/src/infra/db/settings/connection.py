@@ -40,6 +40,8 @@ class DBConnectionHandler:
     def __create_database_engine(self):
         engine = create_engine(
             self.__conection_string,
+            pool_size=10,         # conexões maximas
+            max_overflow=20,    # Pico de conexão
             pool_pre_ping=True,  # ESSENCIAL: Testa a conexão antes de usar. Se caiu, ele reabre.
             pool_recycle=3600,   # Recicla a conexão a cada 1 hora para evitar conexões "zumbis"
             connect_args={

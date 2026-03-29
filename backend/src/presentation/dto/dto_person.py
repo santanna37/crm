@@ -87,7 +87,7 @@ class DTOPerson:
                                         city = dto_filter_address.get("city"),
                                         state_uf = dto_filter_address.get("state_uf"),
                                         state_name = dto_filter_address.get("state_name"),
-                                        complement = dto_filter_address.get("complent")
+                                        complement = dto_filter_address.get("complement")
         )
 
         dto_filters_person = PersonModel(
