@@ -5,6 +5,7 @@ from typing import List, Dict
 from src.infra.db.mappers.mapper_person import PersonMapper
 from src.domain.use_case.case_email.use_case_email_interface import UseCaseEmailInterface
 from src.domain.constants.constant_email_send import TEMPLATE_WELCOME
+from fastapi import BackgroundTasks
 
 
 class UseCasePerson(UseCasePersonInterface):
@@ -14,12 +15,13 @@ class UseCasePerson(UseCasePersonInterface):
         self.__email_service = email_service
         self.__repository = repository
 
-    def create(self, person: PersonModel) -> Dict:
+    def create(self, person: PersonModel, background_tasks:BackgroundTasks = None) -> Dict:
         new_person = self.__repository.create_person(person= person)
 
-        if self.__email_service:
+        if self.__email_service and background_tasks:
             try:
-                self.__email_service.welcome_email(
+                background_tasks.add_task(
+                    self.__email_service.welcome_email,
                             email= person.email,
                             email_class=TEMPLATE_WELCOME,
                 )
