@@ -5,6 +5,11 @@ from src.domain.use_case.case_person.use_case_person_interface import UseCasePer
 from abc import ABC, abstractmethod
 
 
+class HealthCheckControllerInterface(ABC):
+
+    @abstractmethod
+    def handler(self, http_request: HttpRequest) -> HttpResponse: pass
+
 
 class CreatePersonControllerInterface(ABC):
 

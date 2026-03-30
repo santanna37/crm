@@ -18,7 +18,7 @@ address = AddressModel(
 )
 
 person_test = PersonModel(
-    full_name="Luiz Santanna teste email",
+    full_name="Luiz Santanna teste local db superbase",
     email="lsantanna.menezes@gmail.com",
     birth_date=date(1995, 5, 20),
     phone="21999999999",
@@ -68,3 +68,9 @@ filtro = PersonModel(
 # #     lista = repo.update_person(name= user_test.name, new_data= user_test2)
 # #     print(lista)
 # #     print('passou_update_test')
+
+@pytest.mark.integration
+def test_work_online():
+    repo = PersonRepository()
+    repo.health_check()
+    print("fim de teste")

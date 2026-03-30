@@ -6,6 +6,16 @@ from src.main.composers.composer_person import PersonCompose
 
 
 
+async def system_check_health():
+
+    controller = PersonCompose.check_health()
+
+    http_request = HttpRequest()
+
+    http_response = controller.handler(http_request=http_request)
+
+    return JSONResponse(status_code= http_response.status_code,content=http_response.body)
+
 
 async def person_adapter_create(request: Request, background_tasks: BackgroundTasks=None):
     

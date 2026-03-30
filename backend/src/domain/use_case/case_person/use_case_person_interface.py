@@ -6,6 +6,9 @@ from fastapi import BackgroundTasks
 class UseCasePersonInterface(ABC):
 
     @abstractmethod
+    def health(self) -> str: pass
+
+    @abstractmethod
     def create(self, person: PersonModel, background_tasks: BackgroundTasks = None) -> Dict: pass
 
     @abstractmethod

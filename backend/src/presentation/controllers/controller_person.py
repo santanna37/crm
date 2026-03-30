@@ -1,11 +1,28 @@
 from src.presentation.http_types.http_request import HttpRequest
 from src.presentation.http_types.http_response import HttpResponse
 from src.domain.use_case.case_person.use_case_person_interface import UseCasePersonInterface
-from src.presentation.interfaces.controller_person_interface import CreatePersonControllerInterface, ReadPersonControllerInterface
+from src.presentation.interfaces.controller_person_interface import CreatePersonControllerInterface, ReadPersonControllerInterface, HealthCheckControllerInterface
 from src.presentation.dto.dto_person import DTOPerson
 from src.presentation.http_types.status_code import HTTPStatus
 from fastapi import BackgroundTasks
 
+
+
+class HealthCheckController(HealthCheckControllerInterface):
+
+    def __init__(self, use_case: UseCasePersonInterface):
+        self.__use_case = use_case
+
+    def handler(self, http_request: HttpRequest) -> HttpResponse: 
+
+        try:
+            self.__use_case.health()
+            print(f"[CHECK_HEALTH] - Rota health ativa")
+            return HttpResponse(status_code= HTTPStatus.ACCEPTED, body={"status": "alive"})
+        
+        except Exception as exception:
+            print(f"[CHECK_HEALTH] ERROR - Rota healt ERROR")
+            return HttpResponse(status_code= HTTPStatus.BAD_REQUEST, body={"error": str(exception)})
 
 
 class  CreatePersonController(CreatePersonControllerInterface):

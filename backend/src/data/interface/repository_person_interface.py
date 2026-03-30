@@ -9,6 +9,9 @@ from typing import List
 class PersonRepositoryInterface(ABC):
 
     @abstractmethod
+    def health_check(self) -> str: pass
+
+    @abstractmethod
     def create_person(self, person: PersonModel) -> str: pass  
 
 

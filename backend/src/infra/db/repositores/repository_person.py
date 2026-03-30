@@ -6,10 +6,22 @@ from src.data.interface.repository_person_interface import PersonRepositoryInter
 
 from dataclasses import asdict
 from typing import List
-from sqlalchemy import or_
+from sqlalchemy import or_, text
 
 
 class PersonRepository(PersonRepositoryInterface):
+
+    def health_check(self):
+        db_connection = DBConnectionHandler()
+        engine = db_connection.get_engine()
+        with engine.connect() as session:
+            try:
+                check = session.execute(text("SELECT 1")).scalar()
+                print(f"[CHECK_DB] - banco ativo - {check} ")
+            except Exception as exception:
+                print(f"[CHECK_DB] - banco desativado{exception}")
+
+
 
     def create_person(self,person: PersonModel) -> PersonModel:
 

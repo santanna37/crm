@@ -4,7 +4,7 @@ from src.domain.use_case.case_person.use_case_person_interface import UseCasePer
 from typing import List, Dict
 from src.infra.db.mappers.mapper_person import PersonMapper
 from src.domain.use_case.case_email.use_case_email_interface import UseCaseEmailInterface
-from src.domain.constants.constant_email_send import TEMPLATE_WELCOME
+from src.domain.constants.constant_email_send import TEMPLATE_WELCOME, get_welcome_template
 from fastapi import BackgroundTasks
 
 
@@ -14,6 +14,12 @@ class UseCasePerson(UseCasePersonInterface):
                         email_service: UseCaseEmailInterface = None):
         self.__email_service = email_service
         self.__repository = repository
+
+    def health(self) -> str:
+        cash_email = get_welcome_template()
+        print(f"[CHECK_CASH] Email carregado - {len(cash_email)}")
+        self.__repository.health_check()
+
 
     def create(self, person: PersonModel, background_tasks:BackgroundTasks = None) -> Dict:
         new_person = self.__repository.create_person(person= person)
