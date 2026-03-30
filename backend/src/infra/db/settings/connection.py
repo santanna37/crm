@@ -15,7 +15,20 @@ load_dotenv(dotenv_path=env_path)
 
 
 class DBConnectionHandler:
+
+    _engine = None
+
+
     def __init__(self) -> None:
+        if DBConnectionHandler._engine is None:
+            self.__initialize_engine()
+        # self.__initialize_engine()
+        self.session = None
+
+    
+    
+    def __initialize_engine(self):
+
         if os.getenv("AMBIENTE") == "LOCAL":
             self.__conection_string = os.getenv("DATABASE_URL_LOCAL")         
 
@@ -33,19 +46,19 @@ class DBConnectionHandler:
                 print(f"🚀 [DEBUG_CONNECTION] Conectando ao Banco em: {host}")
             else:
                 print("⚠️ [DEBUG_CONNECTION] Nenhuma URL de banco encontrada no .env!")
-        
-        self.__engine = self.__create_database_engine()
-        self.session = None
+        DBConnectionHandler._engine = self.__create_database_engine()
+        #self.__engine = self.__create_database_engine()
 
     def __create_database_engine(self):
         engine = create_engine(
             self.__conection_string,
-            pool_size=10,         # conexões maximas
-            max_overflow=20,    # Pico de conexão
+            pool_size=3,         # conexões maximas
+            max_overflow=2,    # Pico de conexão
+            pool_timeout=240,
             pool_pre_ping=True,  # ESSENCIAL: Testa a conexão antes de usar. Se caiu, ele reabre.
-            pool_recycle=3600,   # Recicla a conexão a cada 1 hora para evitar conexões "zumbis"
+            pool_recycle=300,   # Recicla a conexão a cada 1 hora para evitar conexões "zumbis"
             connect_args={
-                "connect_timeout": 30, # Aumentamos para 30s por causa da latência internacional
+                "connect_timeout": 10, # Aumentamos para 30s por causa da latência internacional
                 "sslmode": "require",
                 "keepalives": 1,       # Mantém o "fogo amigo" entre seu PC e o Supabase
                 "keepalives_idle": 30,
@@ -56,10 +69,10 @@ class DBConnectionHandler:
         return engine
 
     def get_engine(self):
-        return self.__engine
+        return DBConnectionHandler._engine
 
     def __enter__(self):
-        session_make = sessionmaker(bind = self.__engine)
+        session_make = sessionmaker(bind = DBConnectionHandler._engine)
         self.session = session_make()
         return self.session
 
