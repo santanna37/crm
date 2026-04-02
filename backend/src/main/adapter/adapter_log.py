@@ -17,7 +17,7 @@ class BufferHandler(logging.Handler):
                 "time": current_time,
                 "level": record.levelname,
                 "logger": record.name,
-                "message": record.getMessage()
+                "msg": record.getMessage()
             })
         except Exception as exception:
             print(f"erro log : {exception}")
