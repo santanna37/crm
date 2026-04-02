@@ -7,7 +7,7 @@ const isLocal = window.location.hostname === "localhost" || window.location.host
 
 const DEFAULT_CONFIG = {
   fastapi:  isLocal ? 'http://127.0.0.1:8000' : 'https://crm-back-bm9v.onrender.com',
-  vercel:   'https://crm-eta-gold.vercel.app',
+  vercel:   'https://crm-eta-gold.vercel.app/frontend/index.html',
   supabase: 'https://sua-url-do-supabase.supabase.co', 
 };
 
