@@ -33,7 +33,6 @@
 
   <main class="main">
 
-    <!-- Serviços -->
     <section class="section">
       <div class="section-header">
         <span class="section-title">SERVIÇOS</span>
@@ -149,7 +148,6 @@
       </div>
     </section>
 
-    <!-- Logs -->
     <section class="section">
       <div class="section-header">
         <span class="section-title">LOGS</span>
@@ -184,60 +182,7 @@
       </div>
     </section>
 
-    <!-- Configuração -->
-    <section class="section section-config">
-      <div class="section-header">
-        <span class="section-title">CONFIGURAÇÃO</span>
-        <span class="section-line"></span>
-      </div>
-      <div class="config-grid">
-        <div class="config-field">
-          <label class="config-label">FastAPI URL <span class="config-hint-text">(ex: https://meu-app.onrender.com)</span></label>
-          <input type="text" class="config-input" id="cfg-fastapi" placeholder="https://..." />
-        </div>
-        <div class="config-field">
-          <label class="config-label">Frontend URL <span class="config-hint-text">(ex: https://meu-app.vercel.app)</span></label>
-          <input type="text" class="config-input" id="cfg-vercel" placeholder="https://..." />
-        </div>
-        <div class="config-field">
-          <label class="config-label">Supabase URL <span class="config-hint-text">(ex: https://xxxx.supabase.co)</span></label>
-          <input type="text" class="config-input" id="cfg-supabase" placeholder="https://..." />
-        </div>
-        <div class="config-field">
-          <label class="config-label">Brevo API Key</label>
-          <input type="password" class="config-input" id="cfg-brevo" placeholder="xkeysib-..." />
-        </div>
-      </div>
-      <div class="config-actions">
-        <button class="btn-save" onclick="saveConfig()">salvar configuração</button>
-        <span class="config-saved" id="config-saved"></span>
-      </div>
-      <div class="config-tip">
-        <span class="tip-title">endpoint de logs no FastAPI</span>
-        <pre class="tip-code">from collections import deque
-import logging
-
-log_buffer = deque(maxlen=200)
-
-class BufferHandler(logging.Handler):
-    def emit(self, record):
-        log_buffer.appendleft({
-            "time": self.formatTime(record, "%H:%M:%S"),
-            "level": record.levelname,
-            "service": "fastapi",
-            "msg": record.getMessage()
-        })
-
-logging.getLogger("uvicorn").addHandler(BufferHandler())
-logging.getLogger("uvicorn.access").addHandler(BufferHandler())
-
-@app.get("/logs")
-def get_logs():
-    return list(log_buffer)</pre>
-      </div>
-    </section>
-
-  </main>
+    </main>
 
   <script src="app.js"></script>
 </body>

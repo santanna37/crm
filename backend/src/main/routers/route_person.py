@@ -2,13 +2,9 @@ from fastapi import APIRouter, Request, BackgroundTasks
 from  src.main.adapter.adapter_person import person_adapter_create, person_adapter_read, system_check_health
 
 
+
 router = APIRouter(prefix="/person", tags=["Person"])
 
-
-
-@router.get("/health")
-async def health_check_router(): 
-    return await system_check_health()
 
 
 @router.post("/")

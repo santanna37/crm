@@ -7,6 +7,12 @@ from src.data.interface.repository_person_interface import PersonRepositoryInter
 from dataclasses import asdict
 from typing import List
 from sqlalchemy import or_, text
+import logging
+
+
+
+logger = logging.getLogger(__name__)
+
 
 
 class PersonRepository(PersonRepositoryInterface):
@@ -18,8 +24,10 @@ class PersonRepository(PersonRepositoryInterface):
             try:
                 check = session.execute(text("SELECT 1")).scalar()
                 print(f"[CHECK_DB] - banco ativo - {check} ")
+                logger.info(f"[CHECK_DB] - banco ativo - {check} ")
             except Exception as exception:
                 print(f"[CHECK_DB] - banco desativado{exception}")
+                logger.error(f"[CHECK_DB] - banco desativado{exception}")
 
 
 
@@ -30,15 +38,18 @@ class PersonRepository(PersonRepositoryInterface):
         with DBConnectionHandler() as session:
             try:
                 print(f"🔍 [DEBUG] Tentando salvar: {new_user}")
+                logger.info(f"🔍 [DEBUG] Tentando salvar: {new_user}")
                 session.add(new_user)
                 session.commit()
                 print(f"✅ [DEBUG] Commit realizado com sucesso!")
+                logger.info(f"✅ [DEBUG] Commit realizado com sucesso!")
                 session.refresh(new_user)
                 
                 return PersonMapper.entity_to_domain(new_user)
 
             except Exception as exception:
                 print(f"❌ [DEBUG] Erro ao salvar: {exception}")
+                logger.error(f"❌ [DEBUG] Erro ao salvar: {exception}")
                 session.rollback()
 
                 raise exception
@@ -90,11 +101,13 @@ class PersonRepository(PersonRepositoryInterface):
                     list_filter.append(PersonMapper.entity_to_domain(item))
                 print(f"[DEBUG_QUERY] - {list_filter}")
                 print(len(list_filter))
+                logger.info(f"[DEBUG_QUERY] - query realizada: tamanho {len(list_filter)}")
                 
                 return list_filter
 
             except Exception as exception:
                 print(f"Erro na query: {exception}")
+                logger.error(f"[DEBUG_ERROR_QUERY] - ERRO NA QUERY - {exception}")
                 raise exception
 
 
