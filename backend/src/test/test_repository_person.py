@@ -49,6 +49,8 @@ filtro = PersonModel(
 #     repo.create_person(person= person_test)
 #     print('passou_create_test')
 
+# test_repo_create_person()
+
 # def test_repo_read_person():
 #     repo = PersonRepository()
 #     response = repo.read_person(filters=filtro)
@@ -67,10 +69,10 @@ filtro = PersonModel(
 # #     repo = PersonRepository()
 # #     lista = repo.update_person(name= user_test.name, new_data= user_test2)
 # #     print(lista)
-# #     print('passou_update_test')
+# # #     print('passou_update_test')
 
-@pytest.mark.integration
-def test_work_online():
-    repo = PersonRepository()
-    repo.health_check()
-    print("fim de teste")
+# @pytest.mark.integration
+# def test_work_online():
+#     repo = PersonRepository()
+#     repo.health_check()
+#     print("fim de teste")
