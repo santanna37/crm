@@ -4,116 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Apoiadores</title>
-    <link rel="stylesheet" href="/frontend/css/styles_lista.css">
+    <link rel="stylesheet" href="/frontend/css/teste.css">
     <!-- SheetJS Library via CDN -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Container Superior (Header) -->
-        <header class="header">
-            <div class="header-left">
-                <div class="logo">Gestão</div>
-                <h1>Apoiadores da campanha</h1>
-            </div>
-            <div class="header-right">
-                <div class="user-info">
-                    <span class="user-name">Admin User</span>
-                    <span class="user-role">Administrador</span>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Admin</span>
                 </div>
-                <div class="user-avatar">AU</div>
             </div>
-        </header>
+            
+            <nav class="sidebar-nav">
+                <a href="/frontend/html/lista.html" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Listar Usuários</span>
+                </a>
+                <a href="/frontend/html/disparador-email.html" class="nav-item">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Disparador de Email</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
 
-        <!-- Container de Filtros -->
-        <section class="filters-container">
-            <h2>Filtros de Pesquisa</h2>
-            <div class="filters-flexbox">
-                <div class="filter-group">
-                    <label for="filter-name">Nome Completo</label>
-                    <input type="text" id="filter-name" placeholder="Digite o nome...">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Container Superior (Header) -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="logo">Gestão</div>
+                    <h1>Apoiadores da campanha</h1>
                 </div>
-                <div class="filter-group">
-                    <label for="filter-email">Email</label>
-                    <input type="email" id="filter-email" placeholder="Digite o email...">
+                <div class="header-right">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                    <div class="user-avatar">AU</div>
                 </div>
-                <div class="filter-group">
-                    <label for="filter-theme">Código de Tema</label>
-                    <input type="text" id="filter-theme" placeholder="Ex: T001, T002...">
-                </div>
-                <div class="filter-group">
-                    <label for="filter-phone">Telefone</label>
-                    <input type="text" id="filter-phone" placeholder="Somente os números">
-                </div>
-                <div class="filter-group">
-                    <label for="filter-cep">CEP</label>
-                    <input type="text" id="filter-cep" placeholder="Somente os números">
-                </div>
-                <div class="filter-group">
-                    <label for="filter-city">Cidade</label>
-                    <input type="text" id="filter-city" placeholder="Digite a cidade">
-                </div>
+            </header>
 
-            </div>
-        </section>
+            <!-- Container de Filtros -->
+            <section class="filters-container">
+                <h2>Filtros de Pesquisa</h2>
+                <div class="filters-flexbox">
+                    <div class="filter-group">
+                        <label for="filter-name">Nome Completo</label>
+                        <input type="text" id="filter-name" placeholder="Digite o nome...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-email">Email</label>
+                        <input type="email" id="filter-email" placeholder="Digite o email...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-theme">Código de Tema</label>
+                        <input type="text" id="filter-theme" placeholder="Ex: T001, T002...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-phone">Telefone</label>
+                        <input type="text" id="filter-phone" placeholder="Somente os números">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-cep">CEP</label>
+                        <input type="text" id="filter-cep" placeholder="Somente os números">
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-city">Cidade</label>
+                        <input type="text" id="filter-city" placeholder="Digite a cidade">
+                    </div>
+                </div>
+            </section>
 
-        <!-- Container de Ações -->
-        <section class="actions-container">
-            <button id="btn-search" class="btn btn-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                Pesquisar
-            </button>
-            <button id="btn-clear" class="btn btn-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
-                Limpar
-            </button>
-            <button id="btn-export" class="btn btn-success">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Exportar para Excel
-            </button>
-        </section>
+            <!-- Container de Ações -->
+            <section class="actions-container">
+                <button id="btn-search" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    Pesquisar
+                </button>
+                <button id="btn-clear" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                    Limpar
+                </button>
+                <button id="btn-export" class="btn btn-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Exportar para Excel
+                </button>
+            </section>
 
-        <!-- Container da Tabela -->
-        <section class="table-container">
-            <div class="table-header">
-                <h3>Lista de Pessoas</h3>
-                <span id="record-count">0 registros encontrados</span>
-            </div>
-            <div class="table-responsive">
-                <table id="persons-table">
-                    <thead>
-                        <tr>
-                            <th>Nome Completo</th>
-                            <th>Email</th>
-                            <th>Data de Nascimento</th>
-                            <th>Telefone</th>
-                            <th>Consentimento</th>
-                            <th>CEP</th>
-                            <th>Rua</th>
-                            <th>Número</th>
-                            <th>Bairro</th>
-                            <th>Cidade</th>
-                            <th>UF</th>
-                            <th>Temas</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                        <!-- Dados serão inseridos via JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-            <div id="loading" class="loading hidden">
-                <div class="spinner"></div>
-                <span>Carregando dados...</span>
-            </div>
-            <div id="empty-state" class="empty-state hidden">
-                <p>Nenhum registro encontrado.</p>
-            </div>
-        </section>
+            <!-- Container da Tabela -->
+            <section class="table-container">
+                <div class="table-header">
+                    <h3>Lista de Pessoas</h3>
+                    <span id="record-count">0 registros encontrados</span>
+                </div>
+                <div class="table-responsive">
+                    <table id="persons-table">
+                        <thead>
+                            <tr>
+                                <th>Nome Completo</th>
+                                <th>Email</th>
+                                <th>Data de Nascimento</th>
+                                <th>Telefone</th>
+                                <th>Consentimento</th>
+                                <th>CEP</th>
+                                <th>Rua</th>
+                                <th>Número</th>
+                                <th>Bairro</th>
+                                <th>Cidade</th>
+                                <th>UF</th>
+                                <th>Temas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Dados serão inseridos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <span>Carregando dados...</span>
+                </div>
+                <div id="empty-state" class="empty-state hidden">
+                    <p>Nenhum registro encontrado.</p>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script src="/frontend/javascript/script_lista.js"></script>
 </body>
-</html>
-
 </html>

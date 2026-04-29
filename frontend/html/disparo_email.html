@@ -77,7 +77,13 @@
             }
         }
 
-
+        // Verifica autenticação ao carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token');
+            if (!token) {
+                alert('Sessão expirada. Por favor, faça login novamente.');
+                window.location.href = '/frontend/html/login.html';
+            }
         });
     </script>
 </body>

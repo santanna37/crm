@@ -13,6 +13,7 @@ const elements = {
     btnSearch: document.getElementById('btn-search'),
     btnClear: document.getElementById('btn-clear'),
     btnExport: document.getElementById('btn-export'),
+    btnLogout: document.getElementById('logout-btn'),
     tableBody: document.getElementById('table-body'),
     recordCount: document.getElementById('record-count'),
     loading: document.getElementById('loading'),
@@ -24,14 +25,45 @@ let currentData = [];
 
 // 3. INICIALIZAÇÃO: Executa assim que a página carrega
 document.addEventListener('DOMContentLoaded', () => {
+    // Verifica autenticação antes de carregar dados
+    if (!checkAuthentication()) {
+        return;
+    }
+    
     // Configura os cliques dos botões
     elements.btnSearch.addEventListener('click', loadData);
     elements.btnClear.addEventListener('click', handleClear);
     elements.btnExport.addEventListener('click', handleExport);
+    elements.btnLogout.addEventListener('click', handleLogout);
     
-    // Carrega os dados iniciais (os 82 registros que vimos no terminal)
+    // Carrega os dados iniciais
     loadData();
 });
+
+// Função para verificar autenticação
+function checkAuthentication() {
+    const token = localStorage.getItem('admin_token') || sessionStorage.getItem('admin_token');
+    
+    if (!token) {
+        // Redireciona para login se não houver token
+        alert('Sessão expirada. Por favor, faça login novamente.');
+        window.location.href = '/frontend/html/login.html';
+        return false;
+    }
+    
+    // Armazena o token para uso nas requisições
+    window.adminToken = token;
+    return true;
+}
+
+// Função de logout
+function handleLogout() {
+    if (confirm('Tem certeza que deseja sair?')) {
+        localStorage.removeItem('admin_token');
+        sessionStorage.removeItem('admin_token');
+        window.location.href = '/frontend/html/login.html';
+    }
+}
 
 // 4. CONSTRUÇÃO DA URL: Monta a rota com filtros (ex: ?full_name=Luiz)
 function buildUrlWithParams() {
@@ -51,11 +83,31 @@ function buildUrlWithParams() {
 
 // 5. BUSCA DE DADOS (FETCH): Conversa com o Python
 async function loadData() {
+    // Verifica autenticação antes de cada requisição
+    if (!checkAuthentication()) {
+        return;
+    }
+    
     // Mostra o feedback visual de carregamento
     elements.loading.classList.remove('hidden');
     
     try {
-        const response = await fetch(buildUrlWithParams());
+        const response = await fetch(buildUrlWithParams(), {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${window.adminToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.status === 401) {
+            // Token inválido ou expirado
+            localStorage.removeItem('admin_token');
+            sessionStorage.removeItem('admin_token');
+            alert('Sessão inválida. Por favor, faça login novamente.');
+            window.location.href = '/frontend/html/login.html';
+            return;
+        }
         
         if (!response.ok) throw new Error('Erro ao buscar dados do servidor');
 
