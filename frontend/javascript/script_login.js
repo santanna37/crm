@@ -1,6 +1,6 @@
 // Configuração da API Supabase
 const SUPABASE_URL = 'https://lipajeykqlitxzooxjza.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxpcGFqZXlrcWxpdHh6b294emp6YSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzMwMzY2NzQ4LCJleHAiOjE4NDYxNDI3NDh9.m3M-yrI8JZ9EeSDUJ0GJB5Q1X4j5F6zT4Xl2CXLr6ME';
+const SUPABASE_ANON_KEY = 'sb_publishable__-e1dxqLKevQ6Lga5YmJWQ_7o3Q56UN'
 
 // Elementos do DOM
 const loginForm = document.getElementById('loginForm');

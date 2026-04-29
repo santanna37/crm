@@ -38,7 +38,7 @@ elif os.getenv("AMBIENTE") == "ONLINE":
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["https://crm-eta-gold.vercel.app"],  
+        allow_origins=["https://frontclaudinhocampanha.vercel.app"],  
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
