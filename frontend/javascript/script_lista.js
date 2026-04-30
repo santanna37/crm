@@ -1,5 +1,5 @@
 // 1. CONFIGURAÇÕES: Endereço do seu servidor FastAPI
-const API_BASE_URL = 'https://back-claudinho.onrender.com/';
+const API_BASE_URL = 'https://back-claudinho.onrender.com';
 const ENDPOINT_LIST = '/person/list';
 
 // 2. MAPEAMENTO DO DOM: Conectando o JS aos IDs do seu HTML
