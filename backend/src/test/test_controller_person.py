@@ -14,24 +14,24 @@
 #         # Arranjo
 #         controller = PersonCompose.person_register()
         
-#         mock_body = {
-#             "full_name": "Luiz Santanna Integration",
-#             "email": f"integration_{pytest.importorskip('time').time()}@test.com", # Email dinâmico para evitar erro de Unique
-#             "birth_date": "1995-10-10",
-#             "phone": "21999998888",
-#             "consent": True,
-#             "themes": ["Saúde", "Educação"],
-#             "address": {
-#                 "cep": "20000-000",
-#                 "street": "Rua de Integração",
-#                 "number": "500",
-#                 "burgh": "Centro",
-#                 "city": "Rio de Janeiro",
-#                 "state_name": "Rio de Janeiro",
-#                 "state_uf": "RJ",
-#                 "complement": "Apto 101"
-#             }
-#         }
+        # mock_body = {
+        #     "full_name": "Luiz Santanna Integration",
+        #     "email": f"integration_{pytest.importorskip('time').time()}@test.com", # Email dinâmico para evitar erro de Unique
+        #     "birth_date": "1995-10-10",
+        #     "phone": "21999998888",
+        #     "consent": True,
+        #     "themes": ["Saúde", "Educação"],
+        #     "address": {
+        #         "cep": "20000-000",
+        #         "street": "Rua de Integração",
+        #         "number": "500",
+        #         "burgh": "Centro",
+        #         "city": "Rio de Janeiro",
+        #         "state_name": "Rio de Janeiro",
+        #         "state_uf": "RJ",
+        #         "complement": "Apto 101"
+        #     }
+        # }
         
 #         request = HttpRequest(body=mock_body)
 
