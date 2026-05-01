@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disparador de Email - CRM Pro</title>
+    <title>Disparador de Email</title>
     <link rel="stylesheet" href="/frontend/css/styles_lista.css">
 </head>
 <body>
     <div class="app-container">
         <!-- Sidebar -->
+        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-chart-line"></i>
                     <span>Ferramentas</span>
                 </div>
             </div>
             
             <nav class="sidebar-nav">
+                <a href="/frontend/html/dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Dashboard</span>
+                </a>
                 <a href="/frontend/html/lista.html" class="nav-item">
                     <i class="fas fa-users"></i>
                     <span>Listar Usuários</span>
                 </a>
-                <a href="/frontend/html/disparo_email.html" class="nav-item active">
+                <a href="/frontend/html/disparador-email.html" class="nav-item active">
                     <i class="fas fa-paper-plane"></i>
                     <span>Disparador de Email</span>
                 </a>
             </nav>
             
             <div class="sidebar-footer">
-                <button id="logout-btn" class="btn-logout" onclick="handleLogout()">
+                <button id="logout-btn" class="btn-logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Sair</span>
                 </button>

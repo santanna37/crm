@@ -1,0 +1,461 @@
+/* ===== VARIÁVEIS ===== */
+:root {
+    --primary: #f63b3b;
+    --primary-dark: #b30000;
+    --primary-deep: #7a0000;
+    --secondary: #6b7280;
+    --bg: #f3f4f6;
+    --card-bg: #ffffff;
+    --text: #111827;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    background: url('https://res.cloudinary.com/dskw5yi0z/image/upload/v1777602232/2_ituapa.png') center center / cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 20px;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
+    z-index: 1;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to top, var(--bg), transparent);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.25);
+    margin-bottom: 16px;
+}
+
+.hero-title {
+    color: #fff;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    margin-bottom: 12px;
+}
+
+.hero-subtitle {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    font-weight: 400;
+    max-width: 480px;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+}
+
+/* ===== NAVEGAÇÃO DE MESES ===== */
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px 0 30px;
+}
+
+.nav-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.nav-arrow svg {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-arrow:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(246,59,59,0.35);
+}
+
+.month-title {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    min-width: 220px;
+}
+
+/* ===== LISTA DE EVENTOS ===== */
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-bottom: 50px;
+}
+
+/* ===== CARD DE EVENTO ===== */
+.event-card {
+    position: relative;
+    width: 100%;
+    min-height: 180px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+
+.event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Painel de data (lado esquerdo) */
+.event-date-panel {
+    position: relative;
+    width: 140px;
+    min-width: 140px;
+    background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-dark) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 24px 16px;
+    gap: 4px;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.event-day {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.event-weekday {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+}
+
+/* Área de imagem + info (lado direito) */
+.event-visual {
+    position: relative;
+    flex: 1;
+    min-height: 180px;
+    overflow: hidden;
+}
+
+.event-visual img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover .event-visual img {
+    transform: scale(1.06);
+}
+
+/* Overlay gradiente para legibilidade - não esconde totalmente a foto */
+.event-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.20) 100%);
+    z-index: 1;
+}
+
+/* Conteúdo do evento sobreposto */
+.event-info {
+    position: relative;
+    z-index: 2;
+    padding: 24px 28px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    min-height: 180px;
+}
+
+.event-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    line-height: 1.3;
+}
+
+.event-time {
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-time svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.8;
+}
+
+.event-desc {
+    font-size: 0.9rem;
+    font-weight: 400;
+    opacity: 0.85;
+    line-height: 1.5;
+    max-width: 420px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Badge de tipo */
+.event-type {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 3;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-light);
+    animation: fadeIn 0.5s ease;
+}
+
+.empty-state.hidden {
+    display: none !important;
+}
+
+.empty-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    opacity: 0.4;
+}
+
+.empty-state h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.empty-state p {
+    font-size: 0.95rem;
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    padding: 30px 20px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Aplicar animação stagger nos cards */
+.event-card {
+    animation: slideIn 0.4s ease both;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 640px) {
+    .hero {
+        min-height: 380px;
+        padding: 40px 20px;
+    }
+
+    .hero-tag {
+        font-size: 0.75rem;
+        padding: 6px 14px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .calendar-nav {
+        gap: 14px;
+        padding: 28px 0 22px;
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .month-title {
+        min-width: auto;
+        font-size: 1.2rem;
+    }
+
+    .event-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .event-date-panel {
+        width: 100%;
+        min-width: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px 20px;
+    }
+
+    .event-day {
+        font-size: 2.4rem;
+    }
+
+    .event-weekday {
+        font-size: 0.8rem;
+    }
+
+    .event-visual {
+        min-height: 160px;
+    }
+
+    .event-visual::after {
+        background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.40) 60%, rgba(0,0,0,0.20) 100%);
+    }
+
+    .event-info {
+        padding: 20px 22px;
+        min-height: auto;
+    }
+
+    .event-title {
+        font-size: 1.1rem;
+    }
+
+    .event-desc {
+        font-size: 0.85rem;
+    }
+}
