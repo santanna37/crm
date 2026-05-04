@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Em Construção</title>
+
+<style>
+/* =========================
+   DESIGN SYSTEM (SEU CSS)
+========================= */
+:root {
+    --primary-color: #f63b3b;
+    --primary-hover: #eb3525;
+    --secondary-color: #6b7280;
+    --background-color: #f3f4f6;
+    --card-background: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --radius-lg: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* CONTAINER PRINCIPAL */
+.construction-card {
+    background: var(--card-background);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* HEADER */
+.construction-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.construction-header h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+/* GIF SLOT */
+.gif-container {
+    margin: var(--spacing-lg) 0;
+}
+
+.gif-container img {
+    max-width: 250px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* TEXTO */
+.description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* BOTÕES */
+.actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+    .construction-header h1 {
+        font-size: 1.4rem;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="construction-card">
+
+    <div class="construction-header">
+        <h1>🚧 Estamos em construção</h1>
+    </div>
+
+    <!-- SLOT DO GIF -->
+    <div class="gif-container">
+        <img src="https://res.cloudinary.com/dskw5yi0z/image/upload/v1777852815/ced2d0cc1832708a6a1ee95df0e285a1_c7p7yk.gif" alt="Em construção">
+    </div>
+
+    <p class="description">
+        Estamos ajustando os últimos detalhes para entregar algo de alto nível.
+        Volte em breve ou entre em contato conosco.
+    </p>
+
+    <div class="actions">
+        <a href="/frontend/index.html" class="btn btn-primary">Menu Principal</a>
+        <a href="#" class="btn btn-secondary">WhatsApp</a>
+    </div>
+
+</div>
+
+</body>
+</html>

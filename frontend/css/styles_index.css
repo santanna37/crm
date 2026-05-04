@@ -282,6 +282,15 @@ footer {
     font-weight: 400;
     letter-spacing: 0.03em;
 }
+.btn-anansia {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-anansia:hover {
+    color: #00ff00;
+}
 
 /* ===== ANIMACOES ===== */
 @keyframes fadeInUp {
