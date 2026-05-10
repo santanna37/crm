@@ -3644,6 +3644,43 @@ body {
     }
 }
 
+/* BOTÕES */
+.actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: rgba(246,59,59,0.35);
+    color: rgb(7, 0, 0);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(246,59,59,0.35);
+    color: rgb(5, 0, 0);
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
 ```
 
 ## ./frontend/css/styles_dash.css
@@ -5263,6 +5300,15 @@ footer {
     font-size: 0.78rem;
     font-weight: 400;
     letter-spacing: 0.03em;
+}
+.btn-anansia {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-anansia:hover {
+    color: #00ff00;
 }
 
 /* ===== ANIMACOES ===== */
@@ -6948,6 +6994,11 @@ body {
     </main>
 
     <footer class="site-footer">
+
+    <div class="actions">
+        <a href="/frontend/index.html" class="btn btn-primary">Menu Principal</a>
+        <a href="/frontend/html/cadastro.html" class="btn btn-secondary">Seja um Apoiador</a>
+    </div>
         <p>Calendário 2026 — Ouvidor do Povo. Todos os direitos reservados.</p>
     </footer>
 
@@ -6984,7 +7035,7 @@ body {
             </div>
             
             <nav class="sidebar-nav">
-                <a href="/frontend/html/dashboard.html" class="nav-item active">
+                <a href="/frontend/html/dash.html" class="nav-item active">
                     <i class="fas fa-chart-bar"></i>
                     <span>Dashboard</span>
                 </a>
@@ -6992,7 +7043,7 @@ body {
                     <i class="fas fa-users"></i>
                     <span>Listar Usuários</span>
                 </a>
-                <a href="/frontend/html/disparador-email.html" class="nav-item">
+                <a href="/frontend/html/disparo_email.html" class="nav-item">
                     <i class="fas fa-paper-plane"></i>
                     <span>Disparador de Email</span>
                 </a>
@@ -7152,7 +7203,7 @@ body {
             </div>
             
             <nav class="sidebar-nav">
-                <a href="/frontend/html/dashboard.html" class="nav-item">
+                <a href="/frontend/html/dash.html" class="nav-item">
                     <i class="fas fa-chart-bar"></i>
                     <span>Dashboard</span>
                 </a>
@@ -7160,7 +7211,7 @@ body {
                     <i class="fas fa-users"></i>
                     <span>Listar Usuários</span>
                 </a>
-                <a href="/frontend/html/disparador-email.html" class="nav-item active">
+                <a href="/frontend/html/disparo_email.html" class="nav-item active">
                     <i class="fas fa-paper-plane"></i>
                     <span>Disparador de Email</span>
                 </a>
@@ -7228,6 +7279,182 @@ body {
 </html>
 ```
 
+## ./frontend/html/fundacao.html
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Em Construção</title>
+
+<style>
+/* =========================
+   DESIGN SYSTEM (SEU CSS)
+========================= */
+:root {
+    --primary-color: #f63b3b;
+    --primary-hover: #eb3525;
+    --secondary-color: #6b7280;
+    --background-color: #f3f4f6;
+    --card-background: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --radius-lg: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* CONTAINER PRINCIPAL */
+.construction-card {
+    background: var(--card-background);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* HEADER */
+.construction-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.construction-header h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+/* GIF SLOT */
+.gif-container {
+    margin: var(--spacing-lg) 0;
+}
+
+.gif-container img {
+    max-width: 250px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* TEXTO */
+.description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* BOTÕES */
+.actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+    .construction-header h1 {
+        font-size: 1.4rem;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="construction-card">
+
+    <div class="construction-header">
+        <h1>🚧 Estamos em construção</h1>
+    </div>
+
+    <!-- SLOT DO GIF -->
+    <div class="gif-container">
+        <img src="https://res.cloudinary.com/dskw5yi0z/image/upload/v1777852815/ced2d0cc1832708a6a1ee95df0e285a1_c7p7yk.gif" alt="Em construção">
+    </div>
+
+    <p class="description">
+        Estamos ajustando os últimos detalhes para entregar algo de alto nível.
+        Volte em breve ou entre em contato conosco.
+    </p>
+
+    <div class="actions">
+        <a href="/frontend/index.html" class="btn btn-primary">Menu Principal</a>
+        <a href="#" class="btn btn-secondary">WhatsApp</a>
+    </div>
+
+</div>
+
+</body>
+</html>
+```
+
 ## ./frontend/html/home.html
 
 ```html
@@ -7275,11 +7502,11 @@ body {
             <p class="hero-subtitle">A voz do povo na Câmara Municipal</p>
             <p class="hero-description">Compromisso, trabalho e resultados para nossa comunidade</p>
             <div class="hero-buttons">
-                <a href="/frontend/html/cadastro.html" class="btn btn-primary">
+                <a href="/cadastro.html" class="btn btn-primary">
                     <i class="fas fa-user-plus"></i>
                     Faça parte
                 </a>
-                <a href="/frontend/html/calendario.html" class="btn btn-secondary">
+                <a href="/calendario.html" class="btn btn-secondary">
                     <i class="fas fa-calendar-alt"></i>
                     Agenda
                 </a>
@@ -7522,7 +7749,7 @@ body {
             </div>
             
             <nav class="sidebar-nav">
-                <a href="/frontend/html/dashboard.html" class="nav-item">
+                <a href="/frontend/html/dash.html" class="nav-item">
                     <i class="fas fa-chart-bar"></i>
                     <span>Dashboard</span>
                 </a>
@@ -7530,7 +7757,7 @@ body {
                     <i class="fas fa-users"></i>
                     <span>Listar Usuários</span>
                 </a>
-                <a href="/frontend/html/disparador-email.html" class="nav-item">
+                <a href="/frontend/html/disparo_email.html" class="nav-item">
                     <i class="fas fa-paper-plane"></i>
                     <span>Disparador de Email</span>
                 </a>
@@ -7988,6 +8215,12 @@ body {
                 <span>Proponha uma agenda/evento</span>
             </a>
 
+            <!-- Botão 5: fundação claudinho -->
+            <a href="/frontend/html/fundacao.html" class="link-button email">
+                <i class="fas fa-star"></i>
+                <span>Apoie o instituto Ouvidoria Popular</span>
+            </a>
+
             <!-- Botão 5: WhatsApp -->
             <a href="https://chat.whatsapp.com/HFrd79nQFG7HeQbLchvehW?mode=gi_t" target="_blank" class="link-button whatsapp">
                 <i class="fab fa-whatsapp"></i>
@@ -8017,7 +8250,8 @@ body {
 
         <!-- Footer -->
         <footer>
-            <p>WebHouse-Service — FEITO POR HUMANOS — Todos os direitos reservados</p>
+           
+            <p> <a href=https://anansiaweb.vercel.app/ class="btn-anansia" target="_blank">ANANSIA WEB</a> — FEITO POR HUMANOS — Todos os direitos reservados</p>
         </footer>
     </div>
 </body>

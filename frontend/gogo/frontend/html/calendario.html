@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário 2026 - Campanha</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="calendar-hero">
+        <div class="hero-content-calendar">
+            <span class="hero-tag">Campanha 2026</span>
+            <h1 class="hero-title">Calendário 2026</h1>
+            <p class="hero-subtitle">Acompanhe as atividades, reuniões e eventos do ano</p>
+        </div>
+    </header>
+
+    <main class="container container-md">
+        <section class="calendar-nav">
+            <button class="nav-arrow" id="prevMonth" aria-label="Mês anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <h2 class="month-title" id="monthTitle">Janeiro 2026</h2>
+            <button class="nav-arrow" id="nextMonth" aria-label="Próximo mês">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </section>
+
+        <section class="events-list" id="eventsList"></section>
+
+        <section class="empty-state hidden" id="emptyState">
+            <div class="empty-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            </div>
+            <h3>Nenhum evento neste mês</h3>
+            <p>Selecione outro mês para visualizar as atividades.</p>
+        </section>
+
+        <div style="text-align: center; margin: var(--space-xl) 0;">
+            <a href="../index.html" class="btn btn-primary"><i class="fas fa-home"></i> Menu Principal</a>
+            <a href="cadastro.html" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Seja um Apoiador</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Calendário 2026 — Campanha. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/calendario.js"></script>
+</body>
+</html>

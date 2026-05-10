@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Apoiadores</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="page-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Ferramentas</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="lista.html" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Listar Usuários</span>
+                </a>
+                <a href="disparo.html" class="nav-item">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Disparador de Email</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn btn-ghost btn-full">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Header -->
+                <header class="top-header">
+                    <div class="header-brand">
+                        <div class="header-logo">Candidato 2026</div>
+                        <h1 class="header-title">Gestão da Campanha</h1>
+                    </div>
+                    <div class="header-user">
+                        <div class="user-info">
+                            <span class="user-name">Admin</span>
+                            <span class="user-role">Administrador</span>
+                        </div>
+                        <div class="user-avatar">AD</div>
+                    </div>
+                </header>
+
+                <!-- Filtros -->
+                <section class="filters-bar">
+                    <h3 style="margin-bottom: var(--space-md); font-size: var(--font-size-lg);"><i class="fas fa-filter"></i> Filtros de Pesquisa</h3>
+                    <div class="filters-grid">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="filter-name">Nome Completo</label>
+                            <input type="text" id="filter-name" placeholder="Digite o nome...">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="filter-email">Email</label>
+                            <input type="email" id="filter-email" placeholder="Digite o email...">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="filter-theme">Código de Tema</label>
+                            <input type="text" id="filter-theme" placeholder="Ex: T001, T002...">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="filter-phone">Telefone</label>
+                            <input type="text" id="filter-phone" placeholder="Somente os números">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="filter-cep">CEP</label>
+                            <input type="text" id="filter-cep" placeholder="Somente os números">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="filter-city">Cidade</label>
+                            <input type="text" id="filter-city" placeholder="Digite a cidade">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ações -->
+                <section style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-lg); flex-wrap: wrap;">
+                    <button id="btn-search" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Pesquisar
+                    </button>
+                    <button id="btn-clear" class="btn btn-secondary">
+                        <i class="fas fa-trash"></i> Limpar
+                    </button>
+                    <button id="btn-export" class="btn btn-success">
+                        <i class="fas fa-download"></i> Exportar para Excel
+                    </button>
+                </section>
+
+                <!-- Tabela -->
+                <section class="card">
+                    <div class="card-header">
+                        <h3>Lista de Pessoas</h3>
+                        <span id="record-count" style="color: var(--text-light); font-size: var(--font-size-sm);">0 registros encontrados</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="persons-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome Completo</th>
+                                    <th>Email</th>
+                                    <th>Nascimento</th>
+                                    <th>Telefone</th>
+                                    <th>Consentimento</th>
+                                    <th>CEP</th>
+                                    <th>Rua</th>
+                                    <th>Número</th>
+                                    <th>Bairro</th>
+                                    <th>Cidade</th>
+                                    <th>UF</th>
+                                    <th>Temas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body"></tbody>
+                        </table>
+                    </div>
+                    <div id="loading" class="loading hidden">
+                        <div class="spinner"></div>
+                        <span>Carregando dados...</span>
+                    </div>
+                    <div id="empty-state" class="empty-state hidden">
+                        <p>Nenhum registro encontrado.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/lista.js"></script>
+</body>
+</html>
